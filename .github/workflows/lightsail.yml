@@ -1,0 +1,26 @@
+name: deploy-to-lightsail-server
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: ssh commands
+      uses: appleboy/ssh-action@v0.1.6
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          whoami
+          cd laradock/
+          sudo docker compose exec --user=laradock workspace bash
+          cd mid9songposts
+          php artisan about
+
+      
