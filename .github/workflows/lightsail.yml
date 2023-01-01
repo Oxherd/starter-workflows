@@ -21,7 +21,6 @@ jobs:
         script: |
           whoami
           cd laradock
-          sudo docker compose exec --user=laradock workspace bash
-          ls -al
+          sudo docker compose exec --user=laradock -w /var/www/mid9songposts workspace php artisan about
 
       
