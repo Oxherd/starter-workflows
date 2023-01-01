@@ -17,9 +17,10 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
+        script_stop: true
         script: |
           whoami
-          cd laradock/
+          cd laradock
           sudo docker compose exec --user=laradock workspace bash
           cd mid9songposts
           php artisan about
