@@ -19,8 +19,8 @@ jobs:
         key: ${{ secrets.KEY }}
         script_stop: true
         script: |
-          whoami
           cd laradock
-          sudo docker compose exec --user=laradock -w /var/www/mid9songposts workspace php artisan about
+          sudo docker compose exec --user=laradock -w /var/www/mid9songposts workspace bash
+          ls -al
 
       
