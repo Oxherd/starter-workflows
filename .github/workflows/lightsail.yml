@@ -10,6 +10,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      command: sudo docker compose exec --user=laradock -w /var/www/mid9songposts workspace
     steps:
     - name: ssh commands
       uses: appleboy/ssh-action@v0.1.6
@@ -19,8 +21,7 @@ jobs:
         key: ${{ secrets.KEY }}
         script_stop: true
         script: |
-          cd laradock
-          sudo docker compose exec --user=laradock -w /var/www/mid9songposts workspace bash
-          ls -al
+          cd ~/laradock
+          ${{ env.command }} about
 
       
